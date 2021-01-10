@@ -11,10 +11,10 @@ import {mask} from 'vue-the-mask'
 export default {
   directives: {mask},
   name: 'SerialInput',
-    props: {
+    data: () => ({
     serialKey: String,
     noBlankSerial: Number
-    },
+    }),
   methods: {
     checkSerialKey: function() {
       if (this.serialKey.length === 19 && this.serialKey.replace(/\s/g, '').match(/^[0-9]+$/) != null) {
