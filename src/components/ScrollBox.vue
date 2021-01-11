@@ -1,6 +1,28 @@
 <template>
-<div id="ugc">
-  <div @scroll="onScroll" class="content">
+<div id="ugc" class="ugc">
+  <div class="chapter">
+      <h3>1. A propos de nous</h3>
+      <h3>2. Préambule</h3>
+      <h3>3. Définitions</h3>
+      <h3 @click="alert='tu as cliqué'">4. Inscription</h3>
+      <h3>5. Prestation de service et prix</h3>
+      <h3>6. Commandes</h3>
+      <h3>7. Délais et modalités de paiement</h3>
+      <h3>8. Réalisation des prestations</h3>
+      <h3>9. Réclamation</h3>
+      <h3>10. Droit de rétractation du Consommateur</h3>
+      <h3>11. Traitement des données personnelles</h3>
+      <h3>12. Partage des données collectées</h3>
+      <h3>13. Protection des données</h3>
+      <h3>14. Cookies</h3>
+      <h3>15. Modifications</h3>
+      <h3>16. Responsabilité</h3>
+      <h3>17. Propriété intellectuelle</h3>
+      <h3>18. Clause attributive de compétence</h3>
+      <h3>19. Informations précontractuelle</h3>
+      <h3>20. Coordonnées de nos médiateurs </h3>
+    </div>
+  <div @scroll="onScroll" class="content" id="container">
     <h3>1. A propos de nous</h3>
     <p>
       La Société HOLY TWEAKS, SAS, au capital de 25 000 euros, 
@@ -196,6 +218,7 @@
     <p>
       ...
     </p>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
   </div>
 </div>
@@ -216,16 +239,33 @@ export default {
       {
           update: this.scrollPos
       })
+    },
+    changeScroll(value) {
+      var container = this.$el.querySelector("#container");
+      container.scrollTop = value;
     }
-  },
+  }
 }
 </script>
 
 <style scoped>
+.chapter {
+  float: right;
+  line-height: 12px;
+  font-size: 14px;
+  padding-left: 20px;
+  padding-top: 40px;
+  text-align: left;
+}
+.ugc {
+  float: left;
+  margin-top: -40px;
+  margin-left: 180px;
+}
   .content {
     background: lightgrey;
-    width: 700px;
-    height: 1000px;
+    width: 702px;
+    height: 489px;
     margin: 50px auto 0 auto;
     border: 1px solid lightskyblue;
     text-align: left;
