@@ -22,7 +22,7 @@ export default {
         this.$store.state.checkedSerial = this.noBlankSerial
         this.$router.push({ path: 'cgu' })
       } else {
-        alert('Votre clé est fausse')
+        console.log('Votre clé est fausse')
       }
     }
   }
