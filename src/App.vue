@@ -2,6 +2,7 @@
   <div id="app">
   <TitleBar/>
     <router-view class="router" />
+  <p>V 0.1.0</p>
   </div>
 </template>
 
@@ -20,27 +21,23 @@ export default {
 .router {
   width: 1280px;
   height: 679px;
-  margin: 41px 0 0 0;
 }
 body {
   margin: 0;
-  background-image: url("./assets/backgroundlogiciel.png");
 }
 #app {
   width: 1280px;
   height: 720px;
   overflow: hidden;
-  margin: 0;
   background-image: url("./assets/backgroundlogiciel.png");
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
-
 @font-face {
-  font-family: "KeepCalmBook";
-  src: url(./assets/fonts/KeepCalmBook.ttf) format("truetype");
+  font-family: "PossibleSansBold";
+  src: url(./assets/fonts/PossibleSansBold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "PossibleSansMedium";
+  src: url(./assets/fonts/PossibleSansMedium.ttf) format("truetype");
 }
 </style>

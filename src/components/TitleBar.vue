@@ -3,10 +3,8 @@
         <nav>
             <div id="buttons">
                 <div id="minimize">
-                    <img src="../assets/titlebar/- normal.png" >
                 </div>
                 <div id="close">
-                    <img src="../assets/titlebar/x normal.png">
                 </div>
             </div>
         </nav>
@@ -53,22 +51,31 @@ img {
     line-height: 30px;
     -webkit-app-region: no-drag;
 }
-#buttons #minimize, #buttons #close {
+#buttons #minimize {
     float: left;
     width: 50px;
     height: 25px;
     margin: 0px 0 0 0;
     padding: 7px 0 0 0;
     text-align: center;
-    transition: all ease-in-out .3s;
+    transition: all ease-in-out .2s;
+    background-image: url('../assets/titlebar/- normal.png');
+}
+#buttons #close {
+    float: left;
+    width: 50px;
+    height: 25px;
+    margin: 0px 0 0 0;
+    padding: 7px 0 0 0;
+    text-align: center;
+    transition: all ease-in-out .1s;
+    background: url('../assets/titlebar/x normal.png');
 }
 #buttons #minimize:hover {
     background-color: #e4e4e2;
-
 }
 #buttons #close:hover {
-    background-color: #d51527;
-
+    background: url('../assets/titlebar/x survol.png');
 }
 span {
     margin: 0;
