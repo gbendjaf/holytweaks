@@ -2,21 +2,31 @@
     <div id="container">
         <nav>
             <div id="buttons">
-                <div id="minimize">
+                <div @click="close" id="minimize">
                 </div>
-                <div id="close">
+                <div @click="close" id="close">
                 </div>
             </div>
         </nav>
+        <div id="banner"></div>
         <img class="banner" src="../assets/titlebar/barreentete1.png">
     </div>
 </template>
 
 <script>
-
 export default {
     name: 'TitleBar',
+    data() {
+        return {
+        }
+    },
     methods: {
+        close() {
+            window.ipcRenderer.send("close-button")
+        },
+        minimize() {
+            window.ipcRenderer.send("minimize-button")
+        }
     }
 }
 </script>

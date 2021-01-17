@@ -11,6 +11,7 @@
 
 <script>
 import {mask} from 'vue-the-mask'
+//import {axios} from 'axios'
 export default {
   directives: {mask},
   name: 'SerialInput',
@@ -36,10 +37,6 @@ export default {
 html { box-sizing: border-box}
 input { border-style: none; background: transparent; outline: none; }
 
-@font-face {
-  font-family: "PossibleSansMediumItalic";
-  src: url(../assets/fonts/PossibleSansMediumItalic.ttf) format("truetype");
-}
 .container {
   margin: 20px 0 0 177px;
 }
@@ -54,8 +51,8 @@ $input-text-inactive: #b6b9be;
 $input-text-active: #012b5f;
 
 @keyframes gradient { 
-  0%{background-position:0 0}
-  100%{background-position:100% 0}
+  0%{background-position:100% 0}
+  100%{background-position:0 100%}
 }
 
 .webflow-input {
@@ -72,7 +69,7 @@ $input-text-active: #012b5f;
     right: 0px;
     bottom: 0px;
     height: 4px;
-    background: linear-gradient(to right, #00fff0, #0072fe, #e900fe, #0072fe, #00fff0, #0072fe);
+    background: linear-gradient(to left, #00fff0, #0072fe, #e900fe, #0072fe, #00fff0, #0072fe);
     background-size: 500% auto;
     animation: gradient 5s linear infinite;
   }
@@ -108,13 +105,13 @@ button
     width: 140px;
     padding: 27px;
     margin: 0 auto;
-    border: 0;
+    border: none;
     cursor: pointer;
-    border-radius: 2px;
     transform: translateY(-50%);
-    box-shadow: 0 10px 20px -5px #94a6af;
     overflow: hidden;
 }
+
+button:focus { outline: none; }
 
 button:before, button:after
 {
@@ -158,16 +155,16 @@ button div:before, button div:after
     right: 0;
     left: 0;
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
     font-family: PossibleSansBold;
     text-align: center;
-    padding: 19px 0;
-    transition: 0.3s ease all;
+    padding: 17px 0;
+    transition: 0.2s ease all;
 }
 
 button div:before
 {
-    content: "ENVOYER";
+    content: "OK ?";
     letter-spacing: 0;
     opacity: 1;
     transform: scale(1);
@@ -177,6 +174,8 @@ button div:after
 {
     content: "GO !";
     letter-spacing: -10px;
+    font-size: 26px;
+    padding: 13px 0;
     transform: scale(0);
     opacity: 0;
 }

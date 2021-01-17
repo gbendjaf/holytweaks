@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <p>Parent:{{updatedScroll}}</p>
-    <ScrollBox @scrolled="updateScroll" ref="scrollBox"/>
+    <h1>Conditions d'utilisation.</h1>
+    <ScrollBox ref="scrollBox"/>
   </div>
 </template>
 
@@ -14,23 +14,23 @@ export default {
     ScrollBox
   },
   data:() => ({
-      updatedScroll: 0,
   }),
-  methods: {
-    updateScroll(payload) {
-      this.updatedScroll = payload.update
-    },
-    changeScroll(value) {
-      this.$refs.form.changeScroll(value);
-      console.log('Trigger')
-    }
-  }
 }
 </script>
 
 <style scoped>
-p {
-  font-family: KeepCalmBook;
-  font-size: 20px
+h1 {
+  font-family: PossibleSansMedium;
+  background: -webkit-linear-gradient(#0072ff, #0052b7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 45px;
+  margin: 0.4em 0 0.3em 3.3em;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 </style>

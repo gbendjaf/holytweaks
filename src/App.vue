@@ -2,7 +2,7 @@
   <div id="app">
   <TitleBar/>
     <router-view class="router" />
-  <p>V 0.1.0</p>
+  <footer id="version">V {{$store.state.version}}</footer>
   </div>
 </template>
 
@@ -32,6 +32,19 @@ body {
   background-image: url("./assets/backgroundlogiciel.png");
   -moz-osx-font-smoothing: grayscale;
 }
+#version {
+  font-family: PossibleSans;
+  color: #74a6ff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 1.5em 0.5em 0;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
 @font-face {
   font-family: "PossibleSansBold";
   src: url(./assets/fonts/PossibleSansBold.ttf) format("truetype");
@@ -39,5 +52,13 @@ body {
 @font-face {
   font-family: "PossibleSansMedium";
   src: url(./assets/fonts/PossibleSansMedium.ttf) format("truetype");
+}
+@font-face {
+  font-family: "PossibleSansMediumItalic";
+  src: url(./assets/fonts/PossibleSansMediumItalic.ttf) format("truetype");
+}
+@font-face {
+  font-family: "PossibleSans";
+  src: url(./assets/fonts/PossibleSans.ttf) format("truetype");
 }
 </style>
