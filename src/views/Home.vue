@@ -27,6 +27,7 @@ h1, p, br {
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 .texte {
   text-align: left;
@@ -44,7 +45,7 @@ h1 {
   margin-top: 146px;
 }
 .bonjour {
-  font-family: PossibleSansMedium;
+  font-family: KeepCalm-Medium;
   background: -webkit-linear-gradient(#0072ff, #0052b7);
   background-clip: text;
   -webkit-background-clip: text;

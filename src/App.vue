@@ -24,6 +24,7 @@ export default {
 }
 body {
   margin: 0;
+  overflow: hidden;
 }
 #app {
   width: 1280px;
@@ -60,5 +61,9 @@ body {
 @font-face {
   font-family: "PossibleSans";
   src: url(./assets/fonts/PossibleSans.ttf) format("truetype");
+}
+@font-face {
+  font-family: "KeepCalm-Medium";
+  src: url(./assets/fonts/KeepCalm-Medium.ttf) format("truetype");
 }
 </style>

@@ -22,7 +22,7 @@
       <h3 class="sommaire s" @click="scroll('#nineteen')"><span class="dot ss"/>Informations précontractuelle</h3><br><br>
       <h3 class="sommaire t" @click="scroll('#twenty')"><span class="dot tt"/>Coordonnées de nos médiateurs </h3><br><br>
   </nav>
-  <div id="contain" class="content" ref="scrollBox">
+  <div id="contain" class="content" ref="scrollBox" @scroll="scrollBottom">
     <h3 id="one">1. A propos de nous</h3>
     <p>
       La Société HOLY TWEAKS, SAS, au capital de 25 000 euros, 
@@ -141,7 +141,7 @@
       10° De fourniture d'un journal, d'un périodique ou d'un magazine, sauf pour les contrats d'abonnement à ces publications;<br><br>
       11° Conclus lors d'une enchère publique ;<br><br>
       12° De prestations de services d'hébergement, autres que d'hébergement résidentiel, de services de transport de biens, de locations de voitures, de restauration ou d'activités de loisirs qui doivent être fournis à une date ou à une période déterminée ;<br><br>
-      13° De fourniture d'un contenu numérique non fourni sur un support matériel dont l'exécution a commencé après accord préalable exprès du consommateur et renoncement exprès à son droit de rétractation."</i><br>
+      13° De fourniture d'un contenu numérique non fourni sur un support matériel dont l'exécution a commencé après accord préalable exprès du consommateur et renoncement exprès à son droit de rétractation."</i><br><br>
     
       Pour exercer ce droit de rétractation, le Consommateur utilise le formulaire "Formulaire de rétractation" prévu à cet effet sur le Site.<br><br>
       Il sera remboursé de la totalité des frais versés pour la prestation de services dans les 14 jours suivant la prise de connaissance par la Société de sa déclaration de rétractation. Le remboursement sera fait par le même moyen de paiement que celui utilisé à l'achat.<br><br>
@@ -176,7 +176,7 @@
       Pour permettre à ses Utilisateurs de bénéficier d’une navigation optimale sur le Site et d’un meilleur fonctionnement des différentes interfaces et applications, 
       la Société est susceptible d’implanter un cookie sur l’ordinateur de l’Utilisateur. Ce cookie permet de stocker des informations relatives à la navigation sur le Site, 
       ainsi qu’aux éventuelles données saisies par les Utilisateurs (notamment recherches, login, email, mot de passe<br><br>
-      L’Utilisateur autorise expressément la Société à déposer sur le disque dur de l’utilisateur un fichier dit « cookie ».<br><br>
+      L’Utilisateur autorise expressément la Société à déposer sur le disque dur de l’utilisateur un fichier dit «cookie»<br><br>
       L’Utilisateur dispose de la possibilité de bloquer, modifier la durée de conservation, ou supprimer ce cookie via l’interface de son navigateur. Si la désactivation systématique des cookies sur le navigateur de l’Utilisateur l’empêche d’utiliser certains services ou fonctionnalités du Site, ce dysfonctionnement ne saurait en aucun cas constituer un dommage pour le membre qui ne pourra prétendre à aucune indemnité de ce fait.
     </p>
     <h3 id="fifteen">15. Modifications</h3>
@@ -221,6 +221,9 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
   </div>
+  <button @click="nextPage" :class="{lu: lu}">
+        <div></div>
+  </button>
 </div>
 </template>
 
@@ -232,12 +235,23 @@ export default {
   name: 'ScrollBox',
   data() {
     return {
+      lu: false
     }
   },
   methods: {
     scroll: function(cible) {
       gsap.to(this.$refs.scrollBox, { duration: 0.5, scrollTo: {y: cible, offsetY: 20} });
-      console.log(cible)
+    },
+    scrollBottom: function(e) {
+      if((e.srcElement.offsetHeight + e.srcElement.scrollTop) >= e.srcElement.scrollHeight) {
+          this.lu = true }
+    },
+    nextPage: function() {
+      if ( this.lu != false ) {
+        this.$router.push({ path: 'loading' })
+      } else {
+        console.log('veuillez lire les conditions utilisations')
+      }
     }
   },
   mounted() {
@@ -246,19 +260,20 @@ export default {
     var nav = document.getElementById("chapitre");
     var navChapter = nav.getElementsByTagName("h3");
     var navChapterDot = nav.getElementsByTagName("span");
+
     ScrollTrigger.defaults({
       toggleActions: "play reverse play reverse",
       scroller: ".content",
       markers: false
     });
     for ( let i = 0; i < scrollBoxText.length; ++i ) {
-      var end = (scrollBoxText[i].getBoundingClientRect().y) + ((scrollBoxText[i].getBoundingClientRect().height) / 100 * 80);
-      if ( i != 0 ) { var start = (scrollBoxText[i - 1].getBoundingClientRect().y) + ((scrollBoxText[i - 1].getBoundingClientRect().height) / 100 * 80); } else { start = 0 }
+      var end = (scrollBoxText[i].getBoundingClientRect().y) + ((scrollBoxText[i].getBoundingClientRect().height) / 100 * 70);
+      if ( i != 0 ) { var start = (scrollBoxText[i - 1].getBoundingClientRect().y) + ((scrollBoxText[i - 1].getBoundingClientRect().height) / 100 * 70); } else { start = 0 }
       gsap.to(navChapter[i], {
       scrollTrigger: {
         start: () => (start) + "top",
         end: () => (end) + "top",
-        toggleClass: {targets: [navChapter[i], navChapterDot[i]], className:"active"},
+        toggleClass: {targets: [navChapter[i], navChapterDot[i]], className: "active"},
         }
       })
     }
@@ -349,5 +364,84 @@ export default {
   background: -webkit-linear-gradient(#0052b7 0%, #0072ff 62%, #0052b7 100%);
   border: 1px solid #939393;
   height: 70px;
+}
+button {
+    opacity: 0.5;
+    position: absolute;
+    top: 57%;
+    right: 0;
+    left: 43em;
+    display: block;
+    width: 140px;
+    padding: 27px;
+    margin: 18.2em 0 0 10.1em;
+    border: none;
+    transform: translateY(-50%);
+    overflow: hidden;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+button.lu {
+  opacity: 1;
+  cursor: pointer;
+}
+button:focus { outline: none; }
+
+button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+button:before
+{
+    transform: scale(1);
+    background-image: url('../assets/image bouton.png');
+    background-size: cover;
+    transition: 0.2s ease transform;
+    z-index: 1;
+}
+button div
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+}
+button div:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    color: #fff;
+    font-size: 22px;
+    font-family: PossibleSansBold;
+    text-align: center;
+    padding: 16px 0;
+    transition: 0.2s ease all;
+}
+button div:before
+{
+    content: "ACCEPTER";
+    letter-spacing: 0;
+    opacity: 1;
+    transform: scale(0.8);
+}
+button:hover:before
+{
+    transform: scale(1.5);
+}
+button:hover div:before
+{
+    letter-spacing: 1px;
+    opacity: 1;
+    transform: scale(0.9);
 }
 </style>

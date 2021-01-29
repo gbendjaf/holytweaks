@@ -21,11 +21,14 @@ export default {
     }),
   methods: {
     checkSerialKey: function() {
-      if (this.serialKey.length === 19 && this.serialKey.replace(/\s/g, '').match(/^[0-9]+$/) != null) {
+      if ( this.serialKey.length === 19 && this.serialKey.replace(/\s/g, '').match(/^[0-9]+$/) != null ) {
         this.noBlankSerial = this.serialKey.replace(/\s/g, '')
         this.$store.state.checkedSerial = this.noBlankSerial
         this.$router.push({ path: 'cgu' })
-      } else {
+      } else if ( this.serialKey === "" ) {
+        console.log('Veuillez entrer une clé')
+      } 
+      else {
         console.log('Votre clé est fausse')
       }
     }

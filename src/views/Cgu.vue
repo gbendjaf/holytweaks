@@ -26,7 +26,7 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 45px;
-  margin: 0.4em 0 0.3em 3.3em;
+  margin: 0.4em 0 0.1em 3.3em;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-drag: none;
