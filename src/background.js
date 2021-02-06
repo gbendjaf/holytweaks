@@ -6,6 +6,9 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
+const $ = require("jquery");
+const powershell = require("node-powershell");
+
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
@@ -18,6 +21,7 @@ async function createWindow() {
     height: 720,
     resizable: false,
     frame: false,
+    //icon: path.join(__dirname, 'assets/icon.ico'),
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/configuration.html#node-integration for more info
@@ -25,6 +29,34 @@ async function createWindow() {
     }
   })
   win.removeMenu();
+
+  ipcMain.on('close-button', (e) => {
+    win.close();
+    console.log(e)
+  })
+
+  ipcMain.on('minimize-button', (e) => {
+    win.minimize();
+    console.log(e)
+  })
+
+  ipcMain.on('execute-powershell', (e, command) => {
+    let ps = new powershell({
+      executionPolicy: "Bypass",
+      noProfile: true,
+    });
+
+    ps.addCommand(command);
+
+    ps.invoke()
+      .then((output) => {
+        e.returnValue = output;
+      })
+      .catch((err) => {
+        console.error(err);
+        ps.dispose();
+      });
+  })
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
@@ -81,13 +113,3 @@ if (isDevelopment) {
     })
   }
 }
-
-ipcMain.on('close-button', (e) => {
-  app.exit(0);
-  console.log(e)
-})
-
-ipcMain.on('minimize-button', (e) => {
-  app.minimize();
-  console.log(e)
-})

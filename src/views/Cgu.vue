@@ -1,21 +1,20 @@
 <template>
   <div class="home">
-    <h1>Conditions d'utilisation.</h1>
-    <ScrollBox ref="scrollBox"/>
+    <h1>Conditions d'utilisation.{{this.$store.state.checkedSerial}}</h1>
+    <ScrollBox ref="scrollBox" />
   </div>
 </template>
 
 <script>
-import ScrollBox from '@/components/ScrollBox.vue'
+import ScrollBox from "@/components/ScrollBox.vue";
 
 export default {
-  name: 'Cgu',
+  name: "Cgu",
   components: {
-    ScrollBox
+    ScrollBox,
   },
-  data:() => ({
-  }),
-}
+  data: () => ({}),
+};
 </script>
 
 <style scoped>

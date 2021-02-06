@@ -2,26 +2,40 @@
   <div class="home">
     <div class="texte">
       <h1>Bonjour !</h1>
-      <p class="bonjour">Avant de commencer, nous vous invitons à entrer votre clé d'activation Holy Tweaks.</p>
-      <p class="chuchotements">(histoire de nous assurer que vous êtes bien vous)</p>
+      <p class="bonjour">
+        Avant de commencer, nous vous invitons à entrer votre clé d'activation
+        Holy Tweaks.
+      </p>
+      <p class="chuchotements">
+        (histoire de nous assurer que vous êtes bien vous)
+      </p>
     </div>
-    <SerialInput/>
+    <SerialInput />
   </div>
 </template>
 
 <script>
-import SerialInput from '@/components/SerialInput.vue'
+import SerialInput from "@/components/SerialInput.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    SerialInput
-  }
-}
+    SerialInput,
+  },
+  beforeMount() {
+    console.log(this.$store.state.token);
+    if (this.$store.state.checkedSerial != ' ') {
+      console.log('enter');
+      this.$router.push({ path: "cgu" });
+    }
+  },
+};
 </script>
 
 <style scoped>
-h1, p, br {
+h1,
+p,
+br {
   user-select: none;
   -moz-user-select: none;
   -webkit-user-drag: none;

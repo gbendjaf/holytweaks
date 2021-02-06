@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-  <TitleBar/>
+    <TitleBar />
     <router-view class="router" />
-  <footer id="version">V {{$store.state.version}}</footer>
+    <footer id="version">V {{ $store.state.version }}</footer>
   </div>
 </template>
 
 <script>
-import TitleBar from '@/components/TitleBar.vue'
+import TitleBar from "@/components/TitleBar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    TitleBar
-  }
-}
+    TitleBar,
+  },
+};
 </script>
 
 <style>
