@@ -546,7 +546,7 @@ export default {
     },
     nextPage: function () {
       if (this.lu != false) {
-        this.$router.push({ path: "loading" });
+        this.$router.replace({ path: "loading" });
       } else {
         this.errorMessage = "Veuillez lire les conditions d'utilisations en entier";
       }

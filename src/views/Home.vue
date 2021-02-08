@@ -22,12 +22,10 @@ export default {
   components: {
     SerialInput,
   },
-  beforeMount() {
-    console.log(this.$store.state.token);
-    if (this.$store.state.checkedSerial != ' ') {
-      console.log('enter');
-      this.$router.push({ path: "cgu" });
-    }
+  computed: {
+    count() {
+      return this.$store.state.count;
+    },
   },
 };
 </script>

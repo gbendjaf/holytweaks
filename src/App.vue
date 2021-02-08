@@ -8,11 +8,62 @@
 
 <script>
 import TitleBar from "@/components/TitleBar.vue";
+import axios from "axios";
 
 export default {
   name: "App",
   components: {
     TitleBar,
+  },
+  mounted() {
+    this.$store.state.errorMessage = " ";
+    if (this.$store.state.token != " ") {
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + this.$store.state.token;
+      let headerConfig = {
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      };
+      axios
+        .get("http://localhost:3000/serial/validity", headerConfig)
+        .then((res) => {
+          console.log(res);
+          this.$router.replace({ path: "cgu" });
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err.response) {
+            this.$store.state.errorMessage = "Token invalide.";
+            var postData = {
+              key: this.$store.state.checkedSerial,
+              id: this.$store.state.apiId,
+            };
+            axios
+              .post(
+                "http://localhost:3000/serial/login",
+                postData,
+                headerConfig
+              )
+              .then((res) => {
+                console.log(res);
+                this.$store.commit("TOKEN_CHANGE", res.data.token);
+                this.$router.replace({ path: "cgu" });
+              })
+              .catch((err) => {
+                if (err.response.status === 429) {
+                  this.$store.state.errorMessage =
+                    "Trop de tentatives, veuillez re-essayer dans 1 heure.";
+                } else {
+                  this.$store.state.errorMessage = "Votre clé est invalide.";
+                }
+              });
+          } else if (err.request) {
+            this.$store.state.errorMessage =
+              "Connexion au serveur impossible, veuillez relancer l'application.";
+          }
+        });
+    }
   },
 };
 </script>

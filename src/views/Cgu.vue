@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Conditions d'utilisation.{{this.$store.state.checkedSerial}}</h1>
+    <h1>Conditions d'utilisation.</h1>
     <ScrollBox ref="scrollBox" />
   </div>
 </template>

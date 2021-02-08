@@ -19,9 +19,7 @@ export default {
       var command = "get-wmiobject -class win32_VideoController | select-object -expand name";
       var reply = window.ipcRenderer.sendSync("execute-powershell", (event, command));
       console.log(reply);
-      //console.log(typeof command);
-      //this.cg = response;
-      //console.log(this.cg);
+      this.cg = reply
     },
   },
 };

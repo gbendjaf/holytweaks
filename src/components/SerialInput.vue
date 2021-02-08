@@ -9,7 +9,7 @@
       />
       <br />
     </div>
-    <div class="error">{{ errorMessage }}</div>
+    <div class="error">{{ $store.state.errorMessage }}</div>
     <button @click="checkSerialKey">
       <div></div>
     </button>
@@ -19,7 +19,6 @@
 <script>
 import { mask } from "vue-the-mask";
 import axios from "axios";
-//import store from "../store/index";
 
 export default {
   directives: { mask },
@@ -29,11 +28,10 @@ export default {
     noBlankSerial: Number,
     apiId: String,
     apiToken: String,
-    errorMessage: null,
   }),
   methods: {
     checkSerialKey: function () {
-      this.errorMessage = null;
+      this.$store.state.errorMessage = null;
       if (
         this.serialKey.length === 19 &&
         this.serialKey.replace(/\s/g, "").match(/^[0-9]+$/) != null
@@ -52,24 +50,24 @@ export default {
           .post("http://localhost:3000/serial/login", postData, headerConfig)
           .then((res) => {
             console.log(res);
-            this.$store.state.apiId = res.data.id;
-            this.$store.state.checkedSerial = this.noBlankSerial;
-            this.$store.state.token = res.data.token;
-            this.$router.push({ path: "cgu" });
+            this.$store.commit("SERIAL_CHANGE", this.noBlankSerial);
+            this.$store.commit("ID_CHANGE", res.data.id);
+            this.$store.commit("TOKEN_CHANGE", res.data.token);
+            this.$router.replace({ path: "cgu" });
           })
           .catch((err) => {
             console.log(err);
             if (err.response.status === 429) {
-              this.errorMessage =
+              this.$store.state.errorMessage =
                 "Trop de tentatives, veuillez re-essayer dans 1 heure.";
             } else {
-              this.errorMessage = "Votre clé est invalide.";
+              this.$store.state.errorMessage = "Votre clé est invalide.";
             }
           });
       } else if (this.serialKey === "") {
-        this.errorMessage = "Veuillez entrer une clé.";
+        this.$store.state.errorMessage = "Veuillez entrer une clé.";
       } else {
-        this.errorMessage =
+        this.$store.state.errorMessage =
           "Votre clé est invalide, elle doit contenir 16 chiffres.";
       }
     },

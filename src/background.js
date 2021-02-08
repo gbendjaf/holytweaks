@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, ipcMain } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, remote} from 'electron'
 import * as path from 'path'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
@@ -30,14 +30,8 @@ async function createWindow() {
   })
   win.removeMenu();
 
-  ipcMain.on('close-button', (e) => {
-    win.close();
-    console.log(e)
-  })
-
   ipcMain.on('minimize-button', (e) => {
     win.minimize();
-    console.log(e)
   })
 
   ipcMain.on('execute-powershell', (e, command) => {
@@ -113,3 +107,7 @@ if (isDevelopment) {
     })
   }
 }
+
+ipcMain.on('close-button', (e) => {
+  app.quit()
+})

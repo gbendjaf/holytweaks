@@ -2,7 +2,7 @@
   <div id="container">
     <nav>
       <div id="buttons">
-        <div @click="close" id="minimize"></div>
+        <div @click="minimize" id="minimize"></div>
         <div @click="close" id="close"></div>
       </div>
     </nav>
