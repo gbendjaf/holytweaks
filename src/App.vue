@@ -8,14 +8,14 @@
 
 <script>
 import TitleBar from "@/components/TitleBar.vue";
-import axios from "axios";
+//import axios from "axios";
 
 export default {
   name: "App",
   components: {
     TitleBar,
   },
-  mounted() {
+  /*mounted() {
     this.$store.state.errorMessage = " ";
     if (this.$store.state.token != " ") {
       axios.defaults.headers.common["Authorization"] =
@@ -64,7 +64,7 @@ export default {
           }
         });
     }
-  },
+  },*/
 };
 </script>
 
