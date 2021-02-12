@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, ipcMain, remote} from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, remote, globalShortcut } from 'electron'
 import * as path from 'path'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
@@ -21,8 +21,10 @@ async function createWindow() {
     height: 720,
     resizable: false,
     frame: false,
+    show: false,
     //icon: path.join(__dirname, 'assets/icon.ico'),
     webPreferences: {
+      //devTools: false,
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/configuration.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION, preload: path.join(__dirname, '/preload.js')
@@ -30,8 +32,16 @@ async function createWindow() {
   })
   win.removeMenu();
 
+  win.once('ready-to-show', () => {
+    win.show()
+  })
+
   ipcMain.on('minimize-button', (e) => {
     win.minimize();
+  })
+
+  ipcMain.on('close-button', (e) => {
+    win.close();
   })
 
   ipcMain.on('execute-powershell', (e, command) => {
@@ -83,6 +93,10 @@ app.on('activate', () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
+    //Prevent Ctrl Shift I
+    globalShortcut.register('Control+Shift+I', () => {
+      //Return nothing
+    })
     // Install Vue Devtools
     try {
       await installExtension(VUEJS_DEVTOOLS)
@@ -107,7 +121,3 @@ if (isDevelopment) {
     })
   }
 }
-
-ipcMain.on('close-button', (e) => {
-  app.quit()
-})

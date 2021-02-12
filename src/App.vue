@@ -8,14 +8,14 @@
 
 <script>
 import TitleBar from "@/components/TitleBar.vue";
-//import axios from "axios";
+import axios from "axios";
 
 export default {
   name: "App",
   components: {
     TitleBar,
   },
-  /*mounted() {
+  mounted() {
     this.$store.state.errorMessage = " ";
     if (this.$store.state.token != " ") {
       axios.defaults.headers.common["Authorization"] =
@@ -29,7 +29,7 @@ export default {
         .get("http://localhost:3000/serial/validity", headerConfig)
         .then((res) => {
           console.log(res);
-          this.$router.replace({ path: "cgu" });
+          this.$router.replace({ path: "loading" });
         })
         .catch((err) => {
           console.log(err);
@@ -48,7 +48,7 @@ export default {
               .then((res) => {
                 console.log(res);
                 this.$store.commit("TOKEN_CHANGE", res.data.token);
-                this.$router.replace({ path: "cgu" });
+                this.$router.replace({ path: "loading" });
               })
               .catch((err) => {
                 if (err.response.status === 429) {
@@ -63,6 +63,13 @@ export default {
               "Connexion au serveur impossible, veuillez relancer l'application.";
           }
         });
+    }
+  },
+  //Mute this so the localstorage is not clear every time
+  /*beforeDestroy() {
+    const vuex = JSON.parse(localStorage.getItem("vuex"));
+    if (vuex) {
+      localStorage.removeItem(vuex);
     }
   },*/
 };
