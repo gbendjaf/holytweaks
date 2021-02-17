@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="border-radius: 20px">
     <TitleBar />
     <router-view class="router" />
     <footer id="version">V {{ $store.state.version }}</footer>
@@ -66,12 +66,12 @@ export default {
     }
   },
   //Mute this so the localstorage is not clear every time
-  /*beforeDestroy() {
+  beforeDestroy() {
     const vuex = JSON.parse(localStorage.getItem("vuex"));
     if (vuex) {
       localStorage.removeItem(vuex);
     }
-  },*/
+  },
 };
 </script>
 

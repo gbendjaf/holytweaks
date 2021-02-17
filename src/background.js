@@ -21,6 +21,7 @@ async function createWindow() {
     height: 720,
     resizable: false,
     frame: false,
+    transparent: true,
     show: false,
     //icon: path.join(__dirname, 'assets/icon.ico'),
     webPreferences: {

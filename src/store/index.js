@@ -11,7 +11,10 @@ export default new Vuex.Store({
     checkedSerial: " ",
     apiId: " ",
     token: " ",
-    graphicCard: " ",
+    Cgu: " ",
+    Cpu: " ",
+    Ram: " ",
+    Mb: " "
   },
   plugins: [createPersistedState()],
   mutations: {
@@ -23,6 +26,18 @@ export default new Vuex.Store({
     },
     TOKEN_CHANGE(state, payload) {
       state.token = payload;
+    },
+    CGU_CHANGE(state, payload) {
+      state.Cgu = payload
+    },
+    CPU_CHANGE(state, payload) {
+      state.Cpu = payload
+    },
+    RAM_CHANGE(state, payload) {
+      state.Ram = payload
+    },
+    MOTHERBOARD_CHANGE(state, payload) {
+      state.Mb = payload
     },
   },
   actions: {
