@@ -27,9 +27,7 @@ h1 {
   font-size: 45px;
   margin: 0.4em 0 0.1em 3.3em;
   user-select: none;
-  -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
-  -ms-user-select: none;
 }
 </style>

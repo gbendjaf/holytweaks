@@ -95,10 +95,8 @@ input {
   padding-top: 1em;
   padding-left: 0.5em;
   user-select: none;
-  -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
-  -ms-user-select: none;
 }
 
 body {
@@ -168,10 +166,8 @@ $input-text-active: #012b5f;
 br,
 button {
   user-select: none;
-  -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
-  -ms-user-select: none;
 }
 
 button {

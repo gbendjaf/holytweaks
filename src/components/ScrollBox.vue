@@ -607,10 +607,8 @@ export default {
   padding-top: 1em;
   padding-left: 0.5em;
   user-select: none;
-  -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
-  -ms-user-select: none;
 }
 .chapter {
   float: right;
@@ -620,10 +618,8 @@ export default {
   margin-top: 40px;
   text-align: left;
   user-select: none;
-  -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
-  -ms-user-select: none;
 }
 .chapter :hover {
   cursor: pointer;
@@ -699,10 +695,8 @@ button {
   transform: translateY(-50%);
   overflow: hidden;
   user-select: none;
-  -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
-  -ms-user-select: none;
 }
 button.lu {
   opacity: 1;

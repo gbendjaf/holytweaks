@@ -35,10 +35,8 @@ h1,
 p,
 br {
   user-select: none;
-  -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
-  -ms-user-select: none;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 .texte {
