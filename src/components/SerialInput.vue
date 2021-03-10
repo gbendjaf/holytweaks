@@ -132,7 +132,7 @@ $input-text-active: #012b5f;
   background: $input-background;
   &:after {
     content: "";
-    position: absolute;
+
     left: 0px;
     right: 0px;
     bottom: 0px;
@@ -171,7 +171,7 @@ button {
 }
 
 button {
-  position: absolute;
+
   top: 57%;
   right: 0;
   left: 43em;
@@ -192,7 +192,6 @@ button:focus {
 button:before,
 button:after {
   content: "";
-  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -213,7 +212,6 @@ button:after {
 }
 
 button div {
-  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -223,7 +221,6 @@ button div {
 
 button div:before,
 button div:after {
-  position: absolute;
   top: 0;
   right: 0;
   left: 0;

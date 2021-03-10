@@ -122,7 +122,7 @@ export default {
       "-=0.1"
     );
     tl.from(".ram, .ramTitle", {
-      duration: 0.2,
+      duration: 0.21,
       ease: "back",
       scale: 0.3,
       opacity: 0,

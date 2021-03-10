@@ -1,21 +1,24 @@
 <template>
-  <div id="app" style="border-radius: 20px">
-    <TitleBar />
+  <div class="app-container">
+    <div class="title-bar"><TitleBar /></div>
+    <div class="nav-bar"><NavBar /></div>
     <router-view class="router" />
-    <footer id="version">V {{ $store.state.version }}</footer>
+    <!--<footer class="version">V {{ $store.state.version }}</footer>-->
   </div>
 </template>
 
 <script>
 import TitleBar from "@/components/TitleBar.vue";
-import axios from "axios";
+import NavBar from "@/components/NavBar.vue";
+//import axios from "axios";
 
 export default {
   name: "App",
   components: {
     TitleBar,
+    NavBar,
   },
-  mounted() {
+  /*mounted() {
     this.$store.state.errorMessage = " ";
     if (this.$store.state.token != " ") {
       axios.defaults.headers.common["Authorization"] =
@@ -64,7 +67,7 @@ export default {
           }
         });
     }
-  },
+  },*/
   //Mute this so the localstorage is not clear every time
   beforeDestroy() {
     const vuex = JSON.parse(localStorage.getItem("vuex"));
@@ -76,25 +79,36 @@ export default {
 </script>
 
 <style>
-.router {
-  width: 1280px;
-  height: 679px;
-}
 body {
   margin: 0;
   overflow: hidden;
 }
-#app {
+.app-container {
   width: 1280px;
   height: 720px;
   overflow: hidden;
-  background-image: url("./assets/backgroundlogiciel.png");
-  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 50px;
+  background: linear-gradient(180deg, #dce5e9, #f8fdfb);
 }
-#version {
+.title-bar {
+  text-align: center;
+  align-self: flex-start;
+  overflow: hidden;
+}
+.nav-bar {
+  text-align: center;
+  flex: 96px;
+}
+.router {
+  width: 1184px;
+  height: 640px;
+  text-align: center;
+}
+.version {
   font-family: PossibleSans;
   color: #74a6ff;
-  position: absolute;
   bottom: 0;
   right: 0;
   margin: 0 1.5em 0.5em 0;
